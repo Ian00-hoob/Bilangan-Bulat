@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Petualangan Bilangan Bulat</title>
+<style>
+:root{--navy:#172554;--blue:#2563eb;--sky:#dbeafe;--yellow:#fbbf24;--green:#16a34a;--red:#dc2626;--ink:#1f2937}
+*{box-sizing:border-box}body{margin:0;font-family:Arial, sans-serif;background:#f1f5f9;color:var(--ink);line-height:1.6}
+header{background:linear-gradient(135deg,#1d4ed8,#7c3aed);color:white;text-align:center;padding:35px 18px}
+header h1{margin:0 0 8px;font-size:clamp(1.8rem,5vw,3rem)}header p{margin:0}
+nav{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;background:white;padding:12px;position:sticky;top:0;z-index:5;box-shadow:0 2px 8px #0001}
+nav button,.btn{border:0;border-radius:12px;padding:11px 16px;background:var(--blue);color:white;font-weight:bold;cursor:pointer}
+nav button{background:#e0e7ff;color:#1e3a8a}nav button.active{background:var(--blue);color:white}
+main{max-width:1000px;margin:24px auto;padding:0 15px}.panel{display:none;background:white;border-radius:18px;padding:clamp(17px,4vw,30px);box-shadow:0 5px 18px #0f172a0d;margin-bottom:20px}.panel.active{display:block}
+h2{color:#1d4ed8;margin-top:0}.card{background:#eff6ff;border-left:5px solid #3b82f6;padding:15px;border-radius:12px;margin:12px 0}
+.example{background:#f8fafc;border:1px solid #e2e8f0;padding:12px;border-radius:10px;margin:10px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.stat{background:#fef3c7;padding:12px;border-radius:12px;text-align:center;font-weight:bold}
+.question{font-size:1.2rem;font-weight:bold;margin:18px 0}.choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.choice{padding:13px;border:2px solid #cbd5e1;border-radius:12px;background:white;cursor:pointer;font-size:1rem}.choice:hover{border-color:var(--blue);background:#eff6ff}
+.choice:disabled{cursor:default;opacity:.8}.good{background:#dcfce7!important;border-color:#16a34a!important}.bad{background:#fee2e2!important;border-color:#dc2626!important}
+.feedback{font-weight:bold;min-height:28px;margin:12px 0}.muted{color:#64748b}.btn{margin:6px 5px 6px 0}.btn.secondary{background:#475569}.btn.green{background:var(--green)}
+input{padding:10px;border:1px solid #cbd5e1;border-radius:9px;font-size:1rem;width:100%;max-width:260px}
+footer{text-align:center;color:#64748b;padding:20px}
+.numberline{display:flex;align-items:center;justify-content:center;gap:0;overflow-x:auto;margin:20px 0;padding:10px 0}
+.numberline span{min-width:42px;text-align:center;border-top:3px solid #64748b;position:relative;padding-top:10px}
+.numberline span:before{content:"";position:absolute;top:-6px;left:50%;height:9px;border-left:2px solid #64748b}
+@media(max-width:480px){.choices{grid-template-columns:1fr}nav button{flex:1 1 42%}}
+</style>
+</head>
+<body>
+<header>
+<h1>🚀 Petualangan Bilangan Bulat</h1>
+<p>Belajar matematika jadi lebih seru dengan materi, latihan, dan permainan!</p>
+</header>
+<nav>
+<button class="active" data-tab="materi">📘 Materi</button>
+<button data-tab="game">🎮 Permainan</button>
+<button data-tab="latihan">✏️ Latihan Soal</button>
+</nav>
+<main>
+<section id="materi" class="panel active">
+<h2>📘 Mengenal Bilangan Bulat</h2>
+<p>Bilangan bulat adalah bilangan yang terdiri dari bilangan negatif, nol, dan bilangan positif. Contohnya: ..., -3, -2, -1, 0, 1, 2, 3, ...</p>
+<div class="numberline" aria-label="Garis bilangan dari negatif empat sampai positif empat">
+<span>-4</span><span>-3</span><span>-2</span><span>-1</span><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span>
+</div>
+<div class="card"><b>Ingat!</b><br>Bilangan di sebelah kanan pada garis bilangan nilainya lebih besar. Bilangan di sebelah kiri nilainya lebih kecil.</div>
+<h2>1. Penjumlahan</h2>
+<p>Jika tandanya sama, jumlahkan nilainya dan gunakan tanda yang sama. Jika tandanya berbeda, kurangkan nilai mutlaknya dan gunakan tanda bilangan yang nilai mutlaknya lebih besar.</p>
+<div class="example">Contoh: (-5) + (-3) = -8<br>Contoh: (-7) + 4 = -3</div>
+<h2>2. Pengurangan</h2>
+<p>Mengurangi dengan suatu bilangan sama dengan menambahkan lawan bilangannya.</p>
+<div class="example">Contoh: 6 - (-2) = 6 + 2 = 8<br>Contoh: (-4) - 3 = (-4) + (-3) = -7</div>
+<h2>3. Perkalian</h2>
+<p>Kalikan nilai bilangannya. Tanda sama menghasilkan positif, tanda berbeda menghasilkan negatif.</p>
+<div class="example">Contoh: (-3) × (-4) = 12<br>Contoh: (-3) × 4 = -12</div>
+<h2>4. Pembagian</h2>
+<p>Bagilah nilai bilangannya. Aturan tanda sama seperti perkalian. Pembagian dengan nol tidak diperbolehkan.</p>
+<div class="example">Contoh: (-20) ÷ 5 = -4<br>Contoh: (-24) ÷ (-6) = 4</div>
+<div class="card"><b>Tips urutan operasi:</b> Kerjakan yang ada di dalam kurung, lalu perkalian atau pembagian, kemudian penjumlahan atau pengurangan.</div>
+</section>
+
+<section id="game" class="panel">
+<h2>🎮 Tantangan Hitung Cepat</h2>
+<p>Jawab soal sebanyak mungkin sebelum waktu habis. Kamu memiliki 3 kesempatan. Soal akan semakin menantang!</p>
+<div class="grid">
+<div class="stat">⏱️ Waktu: <span id="time">60</span> detik</div>
+<div class="stat">⭐ Skor: <span id="score">0</span></div>
+<div class="stat">❤️ Kesempatan: <span id="lives">3</span></div>
+<div class="stat">🚩 Level: <span id="level">1</span></div>
+</div>
+<div id="gameArea">
+<p class="question" id="gameQuestion">Tekan Mulai Permainan untuk bermain!</p>
+<div id="gameChoices" class="choices"></div>
+<div id="gameFeedback" class="feedback" aria-live="polite"></div>
+</div>
+<button class="btn green" id="startGame">Mulai Permainan</button>
+<button class="btn secondary" id="nextGame" hidden>Soal Berikutnya</button>
+<p class="muted">Jawaban benar mendapat 10 poin. Jawaban salah mengurangi satu kesempatan.</p>
+</section>
+
+<section id="latihan" class="panel">
+<h2>✏️ Latihan Soal Bilangan Bulat</h2>
+<p>Kerjakan 10 soal berikut. Pilih satu jawaban untuk setiap soal, lalu tekan Periksa Jawaban untuk melihat nilai dan pembahasan.</p>
+<div id="quizArea"></div>
+<button class="btn green" id="checkQuiz">Periksa Jawaban</button>
+<button class="btn secondary" id="resetQuiz">Ulangi Latihan</button>
+<div id="quizResult" aria-live="polite"></div>
+</section>
+</main>
+<footer>Belajar, berlatih, dan terus mencoba. Kamu pasti bisa! 🌟</footer>
+<script>
+const $=id=>document.getElementById(id);
+document.querySelectorAll('nav button').forEach(btn=>btn.addEventListener('click',()=>{
+ document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+ document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+ btn.classList.add('active');$(btn.dataset.tab).classList.add('active');
+}));
+const gameOps=[
+ ()=>{let a=rand(-10,10),b=rand(-10,10);return {q:`${fmt(a)} + (${fmt(b)}) = ?`,a:a+b}},
+ ()=>{let a=rand(-10,10),b=rand(-10,10);return {q:`${fmt(a)} - (${fmt(b)}) = ?`,a:a-b}},
+ ()=>{let a=rand(-6,6),b=rand(-6,6);return {q:`${fmt(a)} × (${fmt(b)}) = ?`,a:a*b}},
+ ()=>{let b=rand(1,6),a=rand(-6,6)*b;return {q:`${fmt(a)} ÷ (${fmt(b)}) = ?`,a:a/b}}
+];
+function rand(min,max){return Math.floor(Math.random()*(max-min+1))+min}
+function fmt(n){return n<0?`(${n})`:String(n)}
+let score=0,lives=3,time=60,level=1,current=null,clock=null,playing=false;
+function makeGameQuestion(){
+ let op=gameOps[Math.min(3,Math.floor(score/50))];current=op();
+ $('gameQuestion').textContent=current.q;
+ $('gameChoices').innerHTML='';$('gameFeedback').textContent='';
+ let answers=new Set([current.a]);while(answers.size<4)answers.add(current.a+rand(-10,10)||current.a+1);
+ [...answers].sort(()=>Math.random()-.5).forEach(n=>{
+  const b=document.createElement('button');b.className='choice';b.textContent=n;
+  b.onclick=()=>answerGame(n,b);$('gameChoices').appendChild(b);
+ });
+ $('nextGame').hidden=true;
+}
+function updateStats(){$('score').textContent=score;$('lives').textContent=lives;$('time').textContent=time;$('level').textContent=level}
+function answerGame(n,button){
+ if(!playing)return;
+ document.querySelectorAll('#gameChoices button').forEach(b=>b.disabled=true);
+ if(n===current.a){score+=10;button.classList.add('good');$('gameFeedback').textContent='Benar! Hebat! +10 poin.'}
+ else{lives--;button.classList.add('bad');$('gameFeedback').textContent=`Belum tepat. Jawaban yang benar adalah ${current.a}.`}
+ level=1+Math.floor(score/50);updateStats();
+ if(lives<=0){endGame('Kesempatan habis!');return}
+ $('nextGame').hidden=false;
+}
+function endGame(msg){playing=false;clearInterval(clock);$('gameQuestion').textContent=msg+` Skor akhir: ${score}.`;$('gameChoices').innerHTML='';$('nextGame').hidden=true;$('startGame').textContent='Main Lagi'}
+$('startGame').onclick=()=>{
+ clearInterval(clock);score=0;lives=3;time=60;level=1;playing=true;updateStats();
+ $('startGame').textContent='Mulai Ulang';makeGameQuestion();
+ clock=setInterval(()=>{time--;updateStats();if(time<=0)endGame('Waktu habis!')},1000);
+};
+$('nextGame').onclick=()=>{if(playing)makeGameQuestion()};
+
+const questions=[
+ {q:'Hasil dari (-8) + 5 adalah ...',o:['-13','-3','3','13'],a:1,e:'Tandanya berbeda, kurangkan 8 - 5 = 3. Karena 8 lebih besar dan bertanda negatif, hasilnya -3.'},
+ {q:'Hasil dari 7 + (-4) adalah ...',o:['-11','-3','3','11'],a:2,e:'Kurangkan 7 - 4 = 3. Bilangan 7 lebih besar dan positif, jadi hasilnya 3.'},
+ {q:'Hasil dari (-6) - 3 adalah ...',o:['-9','-3','3','9'],a:0,e:'(-6) - 3 = (-6) + (-3) = -9.'},
+ {q:'Hasil dari 9 - (-5) adalah ...',o:['4','-4','14','-14'],a:2,e:'Mengurangi bilangan negatif sama dengan menambahkan lawannya: 9 + 5 = 14.'},
+ {q:'Hasil dari (-4) × 3 adalah ...',o:['-12','-7','7','12'],a:0,e:'Tanda berbeda menghasilkan negatif. 4 × 3 = 12, jadi -12.'},
+ {q:'Hasil dari (-5) × (-2) adalah ...',o:['-10','-7','7','10'],a:3,e:'Tanda sama menghasilkan positif. 5 × 2 = 10.'},
+ {q:'Hasil dari 24 ÷ (-6) adalah ...',o:['-4','-3','3','4'],a:0,e:'Tanda berbeda menghasilkan negatif. 24 ÷ 6 = 4, jadi -4.'},
+ {q:'Hasil dari (-36) ÷ (-9) adalah ...',o:['-4','-3','3','4'],a:3,e:'Tanda sama menghasilkan positif. 36 ÷ 9 = 4.'},
+ {q:'Hasil dari 4 + (-3) × 2 adalah ...',o:['2','-2','14','-14'],a:1,e:'Kerjakan perkalian lebih dahulu: (-3) × 2 = -6. Kemudian 4 + (-6) = -2.'},
+ {q:'Suhu mula-mula -2°C, lalu naik 7°C. Suhu sekarang adalah ...',o:['-9°C','-5°C','5°C','9°C'],a:2,e:'Suhu sekarang = -2 + 7 = 5°C.'}
+];
+function renderQuiz(){
+ $('quizResult').innerHTML='';
+ $('quizArea').innerHTML=questions.map((q,i)=>`<div class="example"><div><b>${i+1}. ${q.q}</b></div><div class="choices">${q.o.map((v,j)=>`<label class="choice"><input type="radio" name="q${i}" value="${j}" style="width:auto"> ${String.fromCharCode(65+j)}. ${v}</label>`).join('')}</div></div>`).join('');
+}
+$('checkQuiz').onclick=()=>{
+ let score=0,details='<h3>Hasil dan Pembahasan</h3>';
+ questions.forEach((q,i)=>{
+  const selected=document.querySelector(`input[name="q${i}"]:checked`);
+  const correct=selected&&Number(selected.value)===q.a;if(correct)score++;
+  details+=`<div class="example"><b>${i+1}. ${correct?'✅ Benar':'❌ Belum tepat'}</b><br>Kunci jawaban: ${String.fromCharCode(65+q.a)}. ${q.o[q.a]}<br>${q.e}</div>`;
+ });
+ details=`<div class="card"><h3>Nilai kamu: ${score*10}/100</h3>${score>=8?'Luar biasa!':score>=5?'Bagus, terus berlatih!':'Jangan menyerah, pelajari pembahasannya ya!'}</div>`+details;
+ $('quizResult').innerHTML=details;
+};
+$('resetQuiz').onclick=renderQuiz;
+renderQuiz();
+</script>
+</body>
+</html>
